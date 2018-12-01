@@ -101,8 +101,6 @@ mrMeeseeks.methods = {
     },
     learnRequest(box,reality,func,object){
         if(func){
-            this.action=func.name;
-            this.object=object;
             func(object,box,reality);
         }
         
@@ -115,7 +113,7 @@ function draw(object,box,reality){
         console.log('Thats a lower handicap stroke!!!');
         while(reality.length>1){
             console.log('AAA');
-        box.killMrMeeseeks(reality);
+            box.killMrMeeseeks(reality);
         }
         console.log('What about short game?');
     }
