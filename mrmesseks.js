@@ -23,51 +23,104 @@ class SingeltonBox {
       return this._box;
     }
   }
-
+exports.SingeltonBox= SingeltonBox;
 function box(name){
 let b= Object.create(box.methods);
 b.name=name;
 return b;
 }
+exports.box=box;
 box.methods = {
 
-    pressButton: function(reality){
+    pressButton: function(reality, meeseekception){
         let meeseeks= mrMeeseeks();
-        reality.push(meeseeks);
-        meeseeks.speaksOnCreate();
-
+        if(meeseekception){
+            Object.assign(meeseeks, meeseekception);
+            meeseeks.speaksOnCreate('Hiii');
+            meeseekception.makeRequest(meeseekception.action,meeseekception.object);
+            reality.push(meeseeks);
+        } else{
+            meeseeks.speaksOnCreate();
+            reality.push(meeseeks);
+        }
+        return meeseeks;   
     },
-    killMrMeesseks: function(reality){
+    killMrMeeseeks: function(reality){
         reality.shift();
     }
 };
-
+exports.mrMeeseeks=mrMeeseeks;
 function mrMeeseeks(){
         let m =Object.create(mrMeeseeks.methods);
-        m.answers=['Oh yeah! yes ma\'am!', 'Can do', 'Come on'];
+        m.answers=['Oh yeah! yes ma\'am!', 'Oh yeah! Can do', 'Yes sireee!'];
+        m.frustration=0;
 return m;}
 mrMeeseeks.methods = {
-    speaksOnCreate: function(){
-        console.log('Woo I\'m Mr. meeseeks Look at me');
+    speaksOnCreate: function(message){
+        if(message){
+            console.log(message);
+        } else{
+            console.log('Woo I\'m Mr. meeseeks Look at me');
+        }
+        
     },
     makeRequest: function(action,object){
         this.action=action;
         this.object=object;
-        let index=Math.floor((Math.random() * this.answers.lenght));
+        let index=Math.floor((Math.random() * this.answers.length));
+        console.log(this.action + ' ' + this.object);
         console.log(this.answers[index]);    
     },
-    fulffillRequest:function(){
-        console.log(this.action+' '+this.object+' All done!');
-        box.killMrMeesseks();
+    fulfillRequest: function(box,reality){
+        
+        if(this.action==='take two strokes off at golf' && this.object==='Jerry\'s game') {
+            this.frustration=9001;
+            console.log('Kill me please');
+            this.pressButton(box,reality);
+        } else{
+            console.log(this.action+' '+this.object+' All done!');
+            box.killMrMeeseeks(reality);
+        }
+    },
+    pressButton: function(box,reality){
+        if (reality.length>20){
+            this.frustration=4500;
+            this.relievingPsychopathy=4500;
+        }
+        if (this.frustration > 9000){
+            box.pressButton(reality, this).fulfillRequest(box,reality);
+        }
+    },
+    learnRequest(box,reality,func,object){
+        if(func){
+            this.action=func.name;
+            this.object=object;
+            func(object,box,reality);
+        }
+        
     }
 
 };
-let theBox=new SingeltonBox('jajaja');
-console.log(theBox);
-//console.log(theBox.label);
-let theBoxtwo=new SingeltonBox('changeLabel');
-console.log(theBox);
-reality=[];
-theBox.pressButton(reality);
-theBox.pressButton(reality);
-console.log(reality);
+exports.draw=draw;
+function draw(object,box,reality){
+    if(object === 'tomatoInPot'){
+        console.log('Thats a lower handicap stroke!!!');
+        while(reality.length>1){
+            console.log('AAA');
+        box.killMrMeeseeks(reality);
+        }
+    }
+    else{
+        console.log('Existence is pain');
+    }
+}
+exports.putt=putt;
+function putt(onionInJar,box,reality){
+    if(onionInJar == 'onionInJar'){
+        console.log('Nice');
+        box.killMrMeeseeks(reality);
+    }
+    else{
+        console.log('What about short game?');
+    }
+}
