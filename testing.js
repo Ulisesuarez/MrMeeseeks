@@ -24,5 +24,13 @@ console.assert(reality.length === 21);
 reality[0].learnRequest(theBox,reality,mrM.draw);
 reality[0].learnRequest(theBox,reality,mrM.draw,'tomatoInPot');
 console.assert(reality.length === 1);
-reality[0].learnRequest(theBox,reality,mrM.putt);
-reality[0].learnRequest(theBox,reality,mrM.putt,'onionInJar');
+
+let miracle= [true,false];
+let index=Math.floor((Math.random() * miracle.length));
+
+if (miracle[index]){
+    reality[0].learnRequest(theBox,reality,mrM.putt,'onionInJar');
+} else{
+  reality[0].learnRequest(theBox,reality,mrM.putt);  
+}
+

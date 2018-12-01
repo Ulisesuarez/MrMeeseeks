@@ -117,6 +117,7 @@ function draw(object,box,reality){
             console.log('AAA');
         box.killMrMeeseeks(reality);
         }
+        console.log('What about short game?');
     }
     else{
         console.log('Existence is pain');
@@ -129,6 +130,7 @@ function putt(onionInJar,box,reality){
         box.killMrMeeseeks(reality);
     }
     else{
-        console.log('What about short game?');
+        console.log('OH no! Jerry is dead');
+        box.killMrMeeseeks(reality);
     }
 }
