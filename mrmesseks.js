@@ -72,10 +72,18 @@ mrMeeseeks.methods = {
         console.log(this.answers[index]);    
     },
     fulfillRequest: function(box,reality){
-        
         if(this.action==='take two strokes off at golf' && this.object==='Jerry\'s game') {
+            let answers=[
+                ' Remember to square your shoulders, Jerry',
+                'This is as frustrating for us as it is for you',
+                'Just try to relax',
+                'I can’t take it anymore. I just want to die!',
+                'We all want to die! we’re Meeseeks!',
+                'Why did you even rope me into this?',
+                'Kill him!'];
+            let index=Math.floor((Math.random() * answers.length));
             this.frustration=9001;
-            console.log('Kill me please');
+            console.log(answers[index]);
             this.pressButton(box,reality);
         } else{
             console.log(this.action+' '+this.object+' All done!');
